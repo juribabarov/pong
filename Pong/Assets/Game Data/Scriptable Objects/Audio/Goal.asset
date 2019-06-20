@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ebdf9f0ac47a04baa64fb2ef92ff17, type: 3}
+  m_Name: Goal
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 7b8cdbf8b3ef9e04b963c1aade668d13, type: 3}
+  - {fileID: 8300000, guid: fda97e4be59b392459eacf284fd6cfb5, type: 3}
+  - {fileID: 8300000, guid: dde0834a942c3c847a73ae2929306400, type: 3}
+  volume:
+    minValue: 0.68300563
+    maxValue: 1
+  pitch:
+    minValue: 0.28177282
+    maxValue: 0.8100972
