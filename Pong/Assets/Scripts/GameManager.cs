@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Toggle increaseSpeedToggle;
     [SerializeField] Toggle multipleBallsToggle;
     [SerializeField] Toggle shrinkingToggle;
+    [SerializeField] Text playerType1;
+    [SerializeField] Text playerType2;
     [SerializeField] GameObject playerPaddle1;
     [SerializeField] GameObject playerPaddle2;
     [SerializeField] AudioEvent audioSpawnBall;
@@ -28,6 +30,8 @@ public class GameManager : MonoBehaviour
     private bool multipleBalls;
     private bool shrinking;
     private AudioSource audioSource;
+    private Vector2 playerStartPosition1;
+    private Vector2 playerStartPosition2;
 
     private void Awake()
     {
@@ -41,6 +45,9 @@ public class GameManager : MonoBehaviour
     {
         player1Goals.text = "0";
         player2Goals.text = "0";
+
+        playerStartPosition1 = playerPaddle1.transform.position;
+        playerStartPosition2 = playerPaddle2.transform.position;
 
         activeBalls = new List<Transform>();
     }
@@ -119,10 +126,13 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        NewGame(increaseSpeedToggle.isOn, multipleBallsToggle.isOn, shrinkingToggle.isOn);
+        Enum.TryParse(playerType1.text, out PlayerType player1);
+        Enum.TryParse(playerType2.text, out PlayerType player2);
+
+        NewGame(increaseSpeedToggle.isOn, multipleBallsToggle.isOn, shrinkingToggle.isOn, player1, player2);
     }
 
-    public void NewGame(bool _increaseSpeed, bool _multipleBalls, bool _shrinking)
+    public void NewGame(bool _increaseSpeed, bool _multipleBalls, bool _shrinking, PlayerType player1, PlayerType player2)
     {
         StopAllCoroutines();
 
@@ -138,6 +148,18 @@ public class GameManager : MonoBehaviour
         increaseSpeed = _increaseSpeed;
         multipleBalls = _multipleBalls;
         shrinking = _shrinking;
+
+        playerPaddle1.GetComponent<Player>().AI = (player1 == PlayerType.PC);
+        playerPaddle2.GetComponent<Player>().AI = (player2 == PlayerType.PC);
+
+        Vector3 size = playerPaddle1.transform.localScale;
+        size.y = paddleSize;
+
+        playerPaddle1.transform.localScale = size;
+        playerPaddle2.transform.localScale = size;
+
+        playerPaddle1.transform.position = playerStartPosition1;
+        playerPaddle2.transform.position = playerStartPosition2;
 
         PauseGame(false);
 

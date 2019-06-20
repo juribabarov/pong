@@ -4,14 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum PlayerType
+{
+    Human,
+    PC
+}
+
 public class NewGameSettings : MonoBehaviour
 {
-    public enum PlayerType
-    {
-        Human,
-        PC
-    }
-
     private PlayerType selectedPlayerTypeLeft;
     private PlayerType selectedPlayerTypeRight;
 
