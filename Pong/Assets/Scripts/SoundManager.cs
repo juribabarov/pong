@@ -59,8 +59,8 @@ public class SoundManager : MonoBehaviour
         }
 
         //load settings
-        musicOn = (PlayerPrefs.GetInt("music") == 1);
-        soundOn = (PlayerPrefs.GetInt("sfx") == 1);
+        musicOn = (PlayerPrefs.GetInt("music", 1) == 1);
+        soundOn = (PlayerPrefs.GetInt("sfx", 1) == 1);
 
         toggleMusic.isOn = musicOn;
         toggleSound.isOn = soundOn;
